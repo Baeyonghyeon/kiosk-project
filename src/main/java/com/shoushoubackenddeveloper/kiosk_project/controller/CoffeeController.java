@@ -52,4 +52,5 @@ public class CoffeeController {
                 new SingleResponseDto<>(createCoffeeDto),
                 HttpStatus.CREATED);
     }
+
 }
