@@ -3,10 +3,9 @@ management.endpoints.web.exposure.include: "*"
 
 logging:
   level:
-    com.shoushoubackenddevelopr.kiosk_project: debug
+    com.com.shoushoubackenddeveloper.kiosk_project: debug
     org.springframework.web.servlet: debug
     org.hibernate.type.descriptor.sql.BasicBinder: trace
-
 
 spring:
   h2:

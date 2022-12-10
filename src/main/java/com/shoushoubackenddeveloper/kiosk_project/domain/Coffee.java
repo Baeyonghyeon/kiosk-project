@@ -1,5 +1,6 @@
 package com.shoushoubackenddeveloper.kiosk_project.domain;
 
+import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -17,25 +18,32 @@ import java.util.Objects;
 })
 @Entity
 public class Coffee extends AuditingFields {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Setter @Column(nullable = false, unique = true, length = 5)
+    @Setter
+    @Column(nullable = false, unique = true, length = 5)
     private String coffeeCode;
 
-    @Setter @Column(nullable = false, length = 10)
+    @Setter
+    @Column(nullable = false, length = 10)
     private String korName;
 
-    @Setter @Column(length = 20)
+    @Setter
+    @Column(length = 20)
     private String engName;
 
-    @Setter @Column(nullable = false)
+    @Setter
+    @Column(nullable = false)
     private Integer price;
 
-    @Setter @Column(nullable = false, length = 6)
+    @Setter
+    @Column(nullable = false, length = 6)
     private String orderStatus;
 
-    @Setter @Column(nullable = false)
+    @Setter
+    @Column(nullable = false)
     private Boolean sizeSelectable;
 
     private Coffee(String coffeeCode, String korName, String engName, Integer price, String orderStatus, Boolean sizeSelectable) {
@@ -47,8 +55,8 @@ public class Coffee extends AuditingFields {
         this.sizeSelectable = sizeSelectable;
     }
 
-    public static Coffee of(String coffeeCode, String korName, String engName, Integer price, String orderStatus, Boolean sizeSelectable) {
-        return new Coffee(coffeeCode, korName, engName, price, orderStatus, sizeSelectable);
+    public static Coffee of(CoffeeDto coffeeDto) {
+        return new Coffee(coffeeDto.coffeeCode(), coffeeDto.korName(), coffeeDto.engName(), coffeeDto.price(), coffeeDto.orderStatus(), coffeeDto.sizeSelectable());
     }
 
     @Override
