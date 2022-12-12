@@ -55,8 +55,36 @@ public class Coffee extends AuditingFields {
         this.sizeSelectable = sizeSelectable;
     }
 
-    public static Coffee of(CoffeeDto coffeeDto) {
-        return new Coffee(coffeeDto.coffeeCode(), coffeeDto.korName(), coffeeDto.engName(), coffeeDto.price(), coffeeDto.orderStatus(), coffeeDto.sizeSelectable());
+    public Coffee (Long id, String coffeeCode, String korName, String engName, Integer price, String orderStatus, Boolean sizeSelectable) {
+        this.id = id;
+        this.coffeeCode = coffeeCode;
+        this.korName = korName;
+        this.engName = engName;
+        this.price = price;
+        this.orderStatus = orderStatus;
+        this.sizeSelectable = sizeSelectable;
+    }
+
+    public static Coffee of(String coffeeCode, String korName, String engName, Integer price, String orderStatus, Boolean sizeSelectable) {
+        return new Coffee(coffeeCode,
+                korName,
+                engName,
+                price,
+                orderStatus,
+                sizeSelectable
+        );
+    }
+
+    public static Coffee of(Long id, String coffeeCode, String korName, String engName, Integer price, String orderStatus, Boolean sizeSelectable) {
+        return new Coffee(
+                id,
+                coffeeCode,
+                korName,
+                engName,
+                price,
+                orderStatus,
+                sizeSelectable
+        );
     }
 
     @Override

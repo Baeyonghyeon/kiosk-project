@@ -1,6 +1,7 @@
 package com.shoushoubackenddeveloper.kiosk_project.dto;
 
 import com.shoushoubackenddeveloper.kiosk_project.domain.Coffee;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -13,12 +14,8 @@ public record CoffeeDto(
         String orderStatus,
         Boolean sizeSelectable,
         LocalDateTime createdAt,
-        LocalDateTime modifiedAt) {
-
-    //todo : 검증 만들기.
-    public CoffeeDto {
-    }
-
+        LocalDateTime modifiedAt
+) {
     public static CoffeeDto of(String coffeeCode, String korName, String engName, Integer price, String orderStatus, Boolean sizeSelectable) {
         return new CoffeeDto(null, coffeeCode, korName, engName, price, orderStatus, sizeSelectable, null, null);
     }
@@ -37,7 +34,14 @@ public record CoffeeDto(
         );
     }
 
-    public Coffee toEntity(CoffeeDto coffeeDto) {
-        return Coffee.of(coffeeDto);
+    public Coffee toEntity() {
+        return Coffee.of(
+                this.coffeeCode(),
+                this.korName(),
+                this.engName(),
+                this.price(),
+                this.orderStatus(),
+                this.sizeSelectable()
+        );
     }
 }

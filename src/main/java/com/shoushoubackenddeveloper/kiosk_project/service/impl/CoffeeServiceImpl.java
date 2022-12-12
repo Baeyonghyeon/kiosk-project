@@ -2,6 +2,7 @@ package com.shoushoubackenddeveloper.kiosk_project.service.impl;
 
 import com.shoushoubackenddeveloper.kiosk_project.domain.Coffee;
 import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
+import com.shoushoubackenddeveloper.kiosk_project.dto.request.CoffeePost;
 import com.shoushoubackenddeveloper.kiosk_project.repository.CoffeeRepository;
 import com.shoushoubackenddeveloper.kiosk_project.service.CoffeeService;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,7 +24,7 @@ public class CoffeeServiceImpl implements CoffeeService {
     public CoffeeDto findCoffee(Long coffeeId) {
         return coffeeRepository.findById(coffeeId)
                 .map(CoffeeDto::from)
-                .orElseThrow(() -> new EntityNotFoundException("커피가 없습니다 - coffeeId: " + coffeeId));
+                .orElseThrow(() -> new EntityNotFoundException("커피가 없습니다 - coffeeId : " + coffeeId));
     }
 
     @Override
@@ -33,13 +34,13 @@ public class CoffeeServiceImpl implements CoffeeService {
     }
 
     @Override
-    public CoffeeDto createCoffee(CoffeeDto coffeeDto) {
-        verifyExistCoffee(coffeeDto.coffeeCode());
+    public CoffeeDto createCoffee(CoffeePost coffeePost) {
+        verifyExistCoffee(coffeePost.coffeeCode());
 
-        return CoffeeDto.from(coffeeRepository.save(coffeeDto.toEntity(coffeeDto)));
+        return CoffeeDto.from(coffeeRepository.save(coffeePost.toEntity()));
     }
 
-    private void verifyExistCoffee(String coffeeCode) {
+    public void verifyExistCoffee(String coffeeCode) {
         coffeeRepository.findByCoffeeCode(coffeeCode)
                 .ifPresent( c -> {
                     throw new IllegalStateException("이미 존재하는 커피입니다.");

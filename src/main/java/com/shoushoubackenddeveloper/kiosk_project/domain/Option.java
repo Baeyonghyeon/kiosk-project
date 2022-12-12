@@ -33,8 +33,18 @@ public class Option extends AuditingFields {
         this.price = price;
     }
 
+    public Option(Long id, String korName, String engName, Integer price) {
+        this.id = id;
+        this.korName = korName;
+        this.engName = engName;
+        this.price = price;
+    }
+
     public static Option of(String korName, String engName, Integer price){
         return new Option(korName, engName, price);
     }
 
+    public static Option of(Long id,String korName, String engName, Integer price){
+        return new Option(id, korName, engName, price);
+    }
 }

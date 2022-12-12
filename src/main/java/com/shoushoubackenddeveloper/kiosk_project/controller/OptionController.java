@@ -1,11 +1,14 @@
 package com.shoushoubackenddeveloper.kiosk_project.controller;
 
 import com.shoushoubackenddeveloper.kiosk_project.domain.Coffee;
+import com.shoushoubackenddeveloper.kiosk_project.domain.Option;
 import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
+import com.shoushoubackenddeveloper.kiosk_project.dto.OptionDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.request.CoffeePost;
+import com.shoushoubackenddeveloper.kiosk_project.dto.request.OptionPost;
 import com.shoushoubackenddeveloper.kiosk_project.dto.response.MultiResponseDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.response.SingleResponseDto;
-import com.shoushoubackenddeveloper.kiosk_project.service.CoffeeService;
+import com.shoushoubackenddeveloper.kiosk_project.service.OptionService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
@@ -18,40 +21,35 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/coffees")
-public class CoffeeController {
+@RequestMapping("/options")
+public class OptionController {
 
-    private final CoffeeService coffeeService;
+    private final OptionService optionService;
 
-    @GetMapping("/{coffee-id}")
-    public ResponseEntity getCoffee(@Positive @PathVariable("coffee-id") Long coffeeId) {
-        CoffeeDto coffeeDto = coffeeService.findCoffee(coffeeId);
+    @GetMapping("/{option-id}")
+    public ResponseEntity getCoffee(@Positive @PathVariable("option-id") Long optionId) {
+        OptionDto optionDto = optionService.findOption(optionId);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(coffeeDto),
+                new SingleResponseDto<>(optionDto),
                 HttpStatus.OK);
     }
 
     @GetMapping()
-    public ResponseEntity getCoffees(@Positive @RequestParam Integer size,
-                                     @Positive @RequestParam Integer page) {
-        Page<Coffee> coffeePage = coffeeService.findCoffees(page - 1, size);
-        List<CoffeeDto> coffeeDtos = coffeePage.getContent().stream()
-                .map(CoffeeDto::from)
-                .toList();
+    public ResponseEntity getCoffees() {
+        List<OptionDto> optionDtos = optionService.findOptions();
 
         return new ResponseEntity<>(
-                new MultiResponseDto<>(coffeeDtos, coffeePage),
+                new SingleResponseDto<>(optionDtos),
                 HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity postCoffee(@Valid @RequestBody CoffeePost coffeePost){
-        CoffeeDto coffeeDto = coffeeService.createCoffee(coffeePost);
+    public ResponseEntity postOption(@Valid @RequestBody OptionPost optionPost){
+        OptionDto optionDto = optionService.createOption(optionPost);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(coffeeDto),
+                new SingleResponseDto<>(optionDto),
                 HttpStatus.CREATED);
     }
-
 }

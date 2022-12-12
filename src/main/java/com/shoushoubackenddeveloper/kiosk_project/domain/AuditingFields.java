@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @ToString
-@EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
-public class AuditingFields {
+@EntityListeners(AuditingEntityListener.class)
+public abstract class AuditingFields {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @CreatedDate
     @Column(nullable = false, updatable = false)
@@ -28,3 +28,4 @@ public class AuditingFields {
     private LocalDateTime modifiedAt;  // 수정 일시
 
 }
+
