@@ -1,7 +1,6 @@
 package com.shoushoubackenddeveloper.kiosk_project.dto.request;
 
 import com.shoushoubackenddeveloper.kiosk_project.domain.Coffee;
-import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 

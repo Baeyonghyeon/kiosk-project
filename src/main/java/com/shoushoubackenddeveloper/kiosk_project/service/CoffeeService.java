@@ -5,8 +5,6 @@ import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.request.CoffeePost;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 public interface CoffeeService {
 
     CoffeeDto findCoffee(Long coffeeId);

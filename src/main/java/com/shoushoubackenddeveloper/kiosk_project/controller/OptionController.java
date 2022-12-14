@@ -1,18 +1,12 @@
 package com.shoushoubackenddeveloper.kiosk_project.controller;
 
-import com.shoushoubackenddeveloper.kiosk_project.domain.Coffee;
-import com.shoushoubackenddeveloper.kiosk_project.domain.Option;
-import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.OptionDto;
-import com.shoushoubackenddeveloper.kiosk_project.dto.request.CoffeePost;
 import com.shoushoubackenddeveloper.kiosk_project.dto.request.OptionPost;
-import com.shoushoubackenddeveloper.kiosk_project.dto.response.MultiResponseDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.response.SingleResponseDto;
 import com.shoushoubackenddeveloper.kiosk_project.service.OptionService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

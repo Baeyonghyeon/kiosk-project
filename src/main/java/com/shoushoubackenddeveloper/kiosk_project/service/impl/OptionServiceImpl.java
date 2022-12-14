@@ -1,6 +1,6 @@
 package com.shoushoubackenddeveloper.kiosk_project.service.impl;
 
-import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
+import com.shoushoubackenddeveloper.kiosk_project.domain.Option;
 import com.shoushoubackenddeveloper.kiosk_project.dto.OptionDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.request.OptionPost;
 import com.shoushoubackenddeveloper.kiosk_project.repository.OptionRepository;
@@ -35,8 +35,9 @@ public class OptionServiceImpl implements OptionService {
     @Override
     public OptionDto createOption(OptionPost optionPost) {
         verifyExistOption(optionPost.korName());
+        Option option = optionRepository.save(optionPost.toEntity());
 
-        return OptionDto.from(optionRepository.save(optionPost.toEntity()));
+        return OptionDto.from(option);
     }
 
     public void verifyExistOption(String optionKorName) {

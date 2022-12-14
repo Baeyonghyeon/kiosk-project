@@ -1,6 +1,5 @@
 package com.shoushoubackenddeveloper.kiosk_project.domain;
 
-import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

@@ -1,6 +1,5 @@
 package com.shoushoubackenddeveloper.kiosk_project.service;
 
-import com.shoushoubackenddeveloper.kiosk_project.dto.CoffeeDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.OptionDto;
 import com.shoushoubackenddeveloper.kiosk_project.dto.request.OptionPost;
 
